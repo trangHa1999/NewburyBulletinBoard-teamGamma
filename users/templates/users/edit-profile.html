@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>Profile</title>
+    {%  if user.is_authenticated %}
+        <div class="container">
+            <form ation="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+        </div>
+
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}New Comicstrip{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>New Comicstrip</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success ml-2" type="submit">Create New</button>
+        </form>
+        <br />
+    </div>
+{% endblock content %}

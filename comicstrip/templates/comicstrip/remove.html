@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Comic Strips{% endblock %}
+{% block content %}
+    <h1>Delete</h1>
+    <div class="card">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ comicstrip.title }}?</p>
+            {{ form.as_p }}
+            <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+        </form>
+    </div>
+    <br />
+{% endblock content %}

@@ -1,0 +1,55 @@
+.bg-gray {
+  background: #c2c2c2 !important;;
+}
+
+.carousel-indicators-unused {
+  li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background-color: #7b7b7b;
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+  }
+
+  .active {
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+    background-color: #ffff99;
+  }
+}
+
+iframe:focus {
+    outline: none;
+}
+
+iframe[seamless] {
+    display: block;
+}
+
+#articles {
+  a {
+    color: #0c760e;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #0c9f0e;
+  }
+}
+
+
+#main-footer {
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #0b9c8c;
+  }
+}
+

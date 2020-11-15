@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Newbury Tech Edge: Home{% endblock %}
+{% block content %}
+
+    <!--Announcments Slider with Indicators-->
+    {%  if user.is_authenticated and user.username == 'classroom' %}
+            {% if announcmentsCount > 0 %}
+                <div class="bg-light border rounded pl-3 pr-3">
+                    <div class="card-header text-center rounded">
+                        <h1>Announcements</h1>
+                    </div>
+                    <div id="announcmentsSlider" class="carousel slide mt-5 mb-5" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            {% for announcement in announcements %}
+                                {% if forloop.first %}
+                                    <li class="active" data-target="#announcmentsSlider" data-slide-to={{ forloop.counter0 }}></li>
+                                {% else %}
+                                    <li data-target="#announcmentsSlider" data-slide-to={{ forloop.counter0 }}></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ol>
+                        <div class="carousel-inner bg-gray mb-5 rounded">
+                            {% for announcement in announcements %}
+                                {% if forloop.first %}
+                                    <div class="carousel-item mt-3 active">
+                                {% else %}
+                                    <div class="carousel-item mt-3">
+                                {% endif %}
+                                        <div class="text-center {{ announcement.color }} mb-5 ml-2 mr-2">
+                                            <h1 class="card-title">{{ announcement.title }}</h1>
+                                            <p class="card-text"><h3>{{ announcement.bodyText }}</h3><br></p>
+                                        </div>
+                                    </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- CONTROLS -->
+                        <a href="#announcmentsSlider" class="carousel-control-prev text-black-50" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+
+                        <a href="#announcmentsSlider" class="carousel-control-next text-black-50" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+            <br>
+    {% else %}
+        <section id="banner" class="mt-3 mb-4">
+            <div class="container text-center bg-light pt-5 pb-5">
+                <h1>Newbury College Computer Science</h1>
+                <h1>Tech Edge</h1>
+            </div>
+        </section>
+    {% endif %}
+
+    <!--Articles-->
+    <section id="articles">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                    <!-- Rolling topics by course content -->
+                        {% if scheduledArticles %}
+                            {% with scheduledArticles|first as sArticle %}
+                                <div class="card">
+                                    <a href="{{ sArticle.articleURL }}" target="_blank">
+                                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ sArticle.image }}" alt="">
+                                    </a>
+                                    <div class="card-header ml-auto">
+                                        <img src="{{ MEDIA_URL }}/{{ sArticle.qrcCodeImage }}" alt="" width="50">
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="{{ sArticle.articleURL }}" target="_blank">
+                                            <h4 class="card-title">{{ sArticle.title }}</h4>
+                                        </a>
+                                        <p> {{ sArticle.summaryText|truncatewords:80 }}</p>
+                                        <a href="{{ sArticle.articleURL }}" target="_blank">
+                                         More</a>
+                                    </div>
+                                </div>
+                            {% endwith %}
+                        {% else %}
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="{% static 'images/broken-eggs.png' %}" height="150px" alt="">
+                                <div class="card-body">
+                                    <a href="{% url 'submitArticle' %}">
+                                        <h4 class="card-title">No Articles</h4>
+                                    </a>
+                                    <p> No articles to display right now. Please submit your
+                                    <a href="{% url 'submitArticle' %}">suggestions
+                                     </a> for new articles</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <!-- Comic Strip content -->
+                    <div class="col-md-4">
+                        {% for comic in comicStrips %}
+                            <div class="card">
+                                <a href="{% url 'listComics' %}"><img class="card-img-top img-fluid" style="border:1px solid #333" src="{{ MEDIA_URL }}/{{ comic.image }}" alt=""></a>
+
+                                <div class="card-body bg-light text-center">
+                                    <h5 class="card-title">{{ comic.title }}</h5>
+                                    <div class="card-text">
+                                        {{ comic.summaryText|truncatewords:80 }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    <!-- Stored articles content -->
+                        {% for gArticle in generalArticles %}
+                            <div class="card">
+                                <a href="{{ gArticle.articleURL }}" target="_blank">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}/{{ gArticle.image }}" alt="">
+                                </a>
+                                <div class="card-header ml-auto">
+                                    <img src="{{ MEDIA_URL }}/{{ gArticle.qrcCodeImage }}" alt="" width="50">
+                                </div>
+                                <div class="card-body">
+                                    <a href="{{ gArticle.articleURL }}" target="_blank">
+                                        <h4 class="card-title">{{ gArticle.title }}</h4>
+                                    </a>
+                                    <div class="card-text">
+                                        {{ gArticle.summaryText|truncatewords:80 }}
+                                        <a href="{{ gArticle.articleURL }}" target="_blank">
+                                         More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="card">
+                                <img class="card-img-top img-fluid" src="{% static 'images/broken-eggs.png' %}" height="150px" alt="">
+                                <div class="card-body">
+                                    <a href="{% url 'submitArticle' %}">
+                                        <h4 class="card-title">No General Articles</h4>
+                                    </a>
+                                    <div class="card-text">
+                                        No articles to display right now. Please submit your
+                                        <a href="{% url 'submitArticle' %}">suggestions
+                                         </a> for new articles
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+{% endblock content %}

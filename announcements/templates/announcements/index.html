@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Newbury Tech Edge: Announcements{% endblock %}
+{% block content %}
+    {%  if user.is_authenticated %}
+        {% if user.username == 'classroom' %}
+            <div class="jumbotron">
+                <h1 class="text-center">Announcements</h1>
+                <p>
+                    Announcements go here…
+                </p>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

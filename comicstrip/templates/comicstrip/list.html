@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+{% block title %}Newbury Tech Edge: Comic Strips List{% endblock %}
+{% block content %}
+
+    {%  if user.is_authenticated %}     {# heading with add button if an admin is logged in. #}
+        <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                      <h1 class="'pb-2">Comic Strips</h1>
+                  </div>
+                  <div class="col-md-4 offset-md-4">
+                      {% if perms.comicstrip.add_comic %}
+                          <a href="{% url 'createComic' %}" class="btn btn-primary"><i class="fas fa-plus"></i> <span class="text-capitalize">Add Comic</span></a>
+                      {% endif %}
+                  </div>
+                </div>
+        </div>
+        <div class="container">
+            {% for comic in object_list %}
+            <div class="row p-3 text-md-center">
+                <div class="col-3">
+                    <img style="border:1px solid #333" src="{{ MEDIA_URL }}/{{ comic.image }}" alt="" width="200"><br>
+                    <span class="pt-2 pb-3 text-center">
+                        {{ comic.title }}
+                    </span>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endblock content %}
+

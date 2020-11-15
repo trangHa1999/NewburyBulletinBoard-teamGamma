@@ -1,0 +1,45 @@
+.carousel-indicators-unused li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 10px;
+  text-indent: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: #7b7b7b;
+  box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+.carousel-indicators-unused .active {
+  width: 10px;
+  height: 10px;
+  margin: 10px;
+  background-color: #ffff99;
+}
+
+iframe:focus {
+  outline: none;
+}
+
+iframe[seamless] {
+  display: block;
+}
+
+#articles a {
+  color: #0c760e;
+  text-decoration: none;
+}
+#articles a:hover {
+  color: #0c9f0e;
+}
+
+#main-footer a {
+  color: #0b7262;
+  text-decoration: none;
+}
+#main-footer a:hover {
+  color: #0b9c8c;
+}
+
+/*# sourceMappingURL=tech-edge-styles.css.map */
+

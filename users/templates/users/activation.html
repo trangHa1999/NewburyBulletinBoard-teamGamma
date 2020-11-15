@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+<!-- {% load static %} -->
+
+{% block content %}
+    <div class="container">{% block title %}Activation{% endblock %}
+        {% if not activationExpired and not alreadyActive %}
+            <div class="container mt-5">
+                <h2 class="">
+                    Activation Successful!
+                </h2>
+                <div class="pt-3">
+                    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+                </div>
+            </div>
+        {%  elif activationExpired %}
+            <div class="container mt-5">
+                <span class="">
+                    The activation link you used was expired. Please click the button below to request another link.<br>
+                </span>
+                <div class="pt-3">
+                    <a href="{% url 'resend' userId %}" class="btn btn-warning">Resend Email</a>
+                </div>
+            </div>
+
+        {% else %}
+            <div class="container mt-5">
+                <span class="">
+                    This account was already activated.<br>
+                </span>
+                <div class="pt-3">
+                    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Newbury Tech Edge: Announcement Detail{% endblock %}
+{% block content %}
+    {%  if user.is_authenticated %}
+        <div class="card">
+            <div class="card-header clearfix">
+                <span class="float-left">Announcement Details</span>
+                <span class="float-right"><a href="{% url 'announcementsList' %}">< Back</a></span>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th class="bg-light">Title</th>
+                            <td>{{ announcement.title }} </td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Topic</th>
+                            <td>{{ announcement.topic }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Body&nbsp;Text</th>
+                            <td>{{ announcement.bodyText }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Start&nbsp;Date</th>
+                            <td>{{ announcement.startDate }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Exp. Date</th>
+                            <td>{{ announcement.expirationDate }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Color</th>
+                            <td>{{ announcement.color }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Rel.&nbsp;Course</th>
+                            <td>{{ announcement.relatedCourseNumber }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Author</th>
+                            <td>{{ announcement.author }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
+

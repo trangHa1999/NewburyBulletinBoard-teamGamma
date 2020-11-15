@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form method="post">
+           {% csrf_token %}
+            <table>
+            {{ form.as_p }}
+            </table>
+            <button class="btn btn-success" type="submit"><a></a>Sign Up</button>
+        </form>
+        <span>
+            Please note that all signups will be inactive until activated by a Newbury administrator.<br>
+            This is to prevent non-Newbury students from gaining access, until we finish building out this website.
+        </span>
+    </div>
+{% endblock content %}

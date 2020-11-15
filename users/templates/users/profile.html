@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <title>Profile</title>
+    {%  if user.is_authenticated %}
+        <div class="container">
+            <button type="button" class="btn btn-danger float-sm-right"><a href="{% url 'setting' %} }}" style="color:white; text-decoration: none"><i class="fas fa-cog"></i> Setting</a></button>
+            <h1>Profile</h1>
+            <hr class="bg-white" style="margin:0.5">
+            <p>Username: {{ user }}</p>
+            <p>First name: {{ user.first_name }}</p>
+            <p>Last name: {{ user.last_name }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Age: {{ user.age }}</p>
+        </div>
+
+    {% endif %}
+{% endblock content %}

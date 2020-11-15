@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.summaryText }}</p>
+        <a class="btn btn-outline-dark" href="{% url 'articles' %}" role="button">
+             Go back ->
+        </a>
+    </div>
+
+{% endblock content %}

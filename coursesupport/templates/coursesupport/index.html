@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Course{% endblock %}
+{% block content %}
+
+<div class="container">
+
+{# python course#}
+    <div class="pythonList">
+        <h4>
+            <kbd>Python</kbd>
+        </h4>
+        <ul class="list-group list-group-flush">
+            {% for course in object_list %}
+                {% if course.subjectArea == 'python' %}
+                    <li class="list-group-item">
+                        <a href="{{ course.articleURL }}">{{ course.courseTitle }}</a>
+                        <div class="float-right">
+                            <a href="{% url 'course_edit' course.pk %}">Edit</a> | <a href="{% url 'course_delete' course.pk %}">Delete</a>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{# django course#}
+    <div class="djangoList">
+        <h4>
+            <kbd>Django</kbd>
+        </h4>
+        <ul class="list-group list-group-flush">
+            {% for course in object_list %}
+                {% if course.subjectArea == 'django' %}
+                    <li class="list-group-item">
+                        <a href="{{ course.articleURL }}">{{ course.courseTitle }}</a>
+                        <div class="float-right">
+                            <a href="{% url 'course_edit' course.pk %}">Edit</a> | <a href="#">Delete</a>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{# sass course#}
+    <div class="sassList">
+        <h4>
+            <kbd>Sass</kbd>
+        </h4>
+        <ul class="list-group list-group-flush">
+            {% for course in object_list %}
+                {% if course.subjectArea == 'sass' %}
+                    <li class="list-group-item">
+                        <a href="{{ course.articleURL }}">{{ course.courseTitle }}</a>
+                        <div class="float-right">
+                            <a href="{% url 'course_edit' course.pk %}">Edit</a> | <a href="#">Delete</a>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{#<span class="badge badge-success badge-pill float-right">#}
+{#    {% for course in object_list %}#}
+{#        {% if course.subjectArea == 'python' %}#}
+{#            {{ course|length }}#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#</span>#}
+
+</div>
+
+{% endblock content %}

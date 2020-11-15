@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}News{% endblock %}
+<!-- {% load static %} -->
+{% block content %}
+    {#  if user is authenticated => create new article  #}
+    {%  if user.is_authenticated %}
+        <center>
+            <a class="btn btn-outline-dark" href="{% url 'article_create' %}" role="button">+ New Article</a>
+            <p class="mt-2 text-muted">Click the button above to add new article you want to share.</p>
+            <hr class="bg-white" style="margin: 0.5">
+        </center>
+    {% endif %}
+
+    <div class="container-fluid">
+        {#  search bar  #}
+        <input class="form-control mx-auto my-3" id="myInput" type="text" placeholder="Search...">
+
+        {% for article in object_list %}
+            <div class="card border-success mb-3"   id="myDIV">
+                <div class="row">
+                    <div class="col-md-12">
+                        <img class="m-3 rounded" src="{{ MEDIA_URL }}/{{ article.image }}" style='float:left;width:300px;height:200px; margin-right:10px;'>
+                        <a class="text-success" href="{{ article.articleURL }}">
+                            <h5 class="card-title mt-3">{{ article.title }}</h5>
+                        </a>
+                        <p class="card-text">{{ article.summaryText|truncatewords:40 }}</p>
+                        <a href="{% url 'article_edit' article.pk %}">Edit</a> | <a href="{% url 'article_delete' article.pk %}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myDIV div").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+    </script>
+
+{% endblock content %}

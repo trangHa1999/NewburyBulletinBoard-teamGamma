@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Newbury Tech Edge: Announcements List{% endblock %}
+{% block content %}
+    {%  if user.is_authenticated %}
+        <div class="card">
+            <div class="card-header">
+                Announcements List
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Topic</th>
+                            <th>Start Date</th>
+                            <th>Exp. Date</th>
+                            <th>Color</th>
+                            <th>Rel. Course</th>
+                            <th>Author</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                {%  for announcement in object_list %}
+                    <tr>
+                        <td><a href="{% url 'announcementDetail' announcement.pk %}">{{ announcement.title }}</a></td>
+                        <td>{{ announcement.topic }}</td>
+                        <td>{{ announcement.startDate }}</td>
+                        <td>{{ announcement.expirationDate }}</td>
+                        <td>{{ announcement.color }}</td>
+                        <td>{{ announcement.relatedCourseNumber }}</td>
+                        <td>{{ announcement.author }}</td>
+                    </tr>
+                {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
+
